@@ -1,0 +1,15 @@
+import requests
+username = 'klukinegor'
+token = 'ad767cda6575ea400343043b3fad52de0197fa6c'
+
+response = requests.get(
+ f'https://www.pythonanywhere.com/api/v0/user/{username}/cpu/'.format(
+ username=username
+ ),
+ headers={'Authorization': f'Token {token}'.format(token=token)}
+)
+if response.status_code == 200:
+ print('CPU quota info:')
+ print(response.content)
+else:
+ print('Got unexpected status code {}: {!r}'.format(response.status_code, response.content))
